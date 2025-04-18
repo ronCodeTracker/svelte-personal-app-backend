@@ -44,8 +44,6 @@ router.post('/', async (req, res) => {
 });
 
 
-
-
 // GET: Retrieve all emails
 router.get('/', async (req, res) => {
   try {

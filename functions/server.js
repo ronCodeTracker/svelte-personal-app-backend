@@ -18,8 +18,13 @@ app.use((req, res, next) => {
     rawData += chunk;
   });
   req.on('end', () => {
-    console.log('Raw request body (as string):', rawData); // Logs the raw body as a string
-    req.rawBody = rawData; // Store the raw body for further use
+    try {
+      req.body = JSON.parse(rawData); // Manually parse JSON
+      console.log('Parsed JSON body:', req.body); // Debug log
+    } catch (err) {
+      console.error('Error parsing JSON:', err.message);
+      req.body = {}; // Set to an empty object if parsing fails
+    }
     next();
   });
 });
