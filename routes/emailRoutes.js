@@ -12,7 +12,7 @@ const emailSchema = new mongoose.Schema(
     email: { type: String, required: false, unique: false },
   },
   {
-    collection: 'Email_Collection', // Specify the exact collection name
+    collection: 'Email', // Specify the exact collection name
   }
 );
 
@@ -22,7 +22,7 @@ const Email = mongoose.model('Email', emailSchema);
 router.post('/', async (req, res) => {
   try {
     console.log("hey there!"); // Debug log
-    
+
     const { email } = req.body;
 
     console.log('Received email:', email); // Debug log
