@@ -25,8 +25,8 @@ app.use((req, res, next) => {
 });
 
 //app.use(express.json());
-app.use(express.text()); // Middleware to parse plain text
-app.use(express.urlencoded({ extended: true }));
+//app.use(express.text()); // Middleware to parse plain text
+//app.use(express.urlencoded({ extended: true }));
 
 // Static files
 app.use(express.static(path.join(__dirname, '../public')));
