@@ -1,9 +1,8 @@
-
 [build]
   functions = "functions"
   publish = "public"
 
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/server"
-  status = 200
+# Include the views directory in the serverless function
+[[functions]]
+  directory = "functions"
+  included_files = ["../views/**"]
