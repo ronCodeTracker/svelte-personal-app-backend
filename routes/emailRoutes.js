@@ -43,6 +43,7 @@ router.post('/', async (req, res) => {
 // GET: Retrieve all emails
 router.get('/', async (req, res) => {
   try {
+    console.log("here is here");
     const emails = await Email.find();
     res.status(200).json(emails);
   } catch (err) {
