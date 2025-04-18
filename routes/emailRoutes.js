@@ -9,7 +9,7 @@ const validator = require('validator');
 // Define the Mongoose schema and model
 const emailSchema = new mongoose.Schema(
   {
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: false, unique: false },
   },
   {
     collection: 'Email_Collection', // Specify the exact collection name
@@ -22,6 +22,8 @@ const Email = mongoose.model('Email', emailSchema);
 router.post('/', async (req, res) => {
   try {
     const { email } = req.body;
+
+    console.log('Received email:', email); // Debug log
 
     // Validate email
     if (!validator.isEmail(email)) {
