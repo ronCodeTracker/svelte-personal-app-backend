@@ -7,9 +7,14 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 // Define the Mongoose schema and model
-const emailSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-});
+const emailSchema = new mongoose.Schema(
+  {
+    email: { type: String, required: true, unique: true },
+  },
+  {
+    collection: 'Email_Collection', // Specify the exact collection name
+  }
+);
 
 const Email = mongoose.model('Email', emailSchema);
 
