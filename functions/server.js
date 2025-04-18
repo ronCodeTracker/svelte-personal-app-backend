@@ -11,6 +11,12 @@ const emailRoutes = require('../routes/emailRoutes');
 const app = express();
 
 // Middleware
+
+app.use((req, res, next) => {
+  console.log("Raw request body:", req.body);
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
