@@ -1,8 +1,11 @@
+
+
 [build]
   functions = "functions"
   publish = "public"
 
 # Include the views directory in the serverless function
-[[functions]]
-  directory = "functions"
+[functions]
   included_files = ["../views/**"]
+
+
