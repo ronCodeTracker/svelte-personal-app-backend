@@ -14,6 +14,7 @@ const app = express();
 
 app.use((req, res, next) => {
   console.log("Raw request body:", req.body);
+  console.log("Raw request body (JSON):", JSON.stringify(req.body)); // Converts to JSON string for debugging
   next();
 });
 
