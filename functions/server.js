@@ -13,9 +13,15 @@ const app = express();
 // Middleware
 
 app.use((req, res, next) => {
-  console.log("Raw request body:", req.body);
-  console.log("Raw request body (JSON):", JSON.stringify(req.body)); // Converts to JSON string for debugging
-  next();
+  let rawData = '';
+  req.on('data', (chunk) => {
+    rawData += chunk;
+  });
+  req.on('end', () => {
+    console.log('Raw request body (as string):', rawData); // Logs the raw body as a string
+    req.rawBody = rawData; // Store the raw body for further use
+    next();
+  });
 });
 
 //app.use(express.json());
