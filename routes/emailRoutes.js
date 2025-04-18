@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
     console.log("hey there!"); // Debug log
     console.log("reqbody:  ",req.rawBody); // Debug log
     //console.log("reqbodytojson:  ",JSON.stringify(req.body)); // Debug log
-    const { email } = req.rawBody;
+    const email = req.rawBody;
 
     console.log('Received email:', email); // Debug log
 
