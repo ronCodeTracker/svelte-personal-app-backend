@@ -21,14 +21,16 @@ const Email = mongoose.model('Email', emailSchema);
 // POST: Add a new email
 router.post('/', async (req, res) => {
   try {
-    console.log("hey there!"); // Debug log
-    console.log("reqbody:  ",req.rawBody); // Debug log
-    //console.log("reqbodytojson:  ",JSON.stringify(req.body)); // Debug log
-    const email = req.rawBody;
+    console.log("Parsed request body:", req.body); // Debug log
+    const { email } = req.body; // Extract email from JSON body
 
     console.log('Received email:', email); // Debug log
 
     // Validate email
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required' });
+    }
+
     if (!validator.isEmail(email)) {
       return res.status(400).json({ error: 'Invalid email address' });
     }
@@ -37,9 +39,12 @@ router.post('/', async (req, res) => {
     await newEmail.save();
     res.status(201).json({ message: 'Email saved successfully', email: newEmail });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 });
+
+
+
 
 // GET: Retrieve all emails
 router.get('/', async (req, res) => {
