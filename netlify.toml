@@ -4,8 +4,12 @@
   functions = "functions"
   publish = "public"
 
-# Include the views directory in the serverless function
 [functions]
   included_files = ["../views/**"]
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200
 
 
