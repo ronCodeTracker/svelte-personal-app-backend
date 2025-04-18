@@ -5,7 +5,7 @@ const express = require('express');
 const serverless = require('serverless-http');
 const mongoose = require('mongoose');
 const path = require('path');
-const exphbs = require('express-handlebars');
+
 const emailRoutes = require('../routes/emailRoutes');
 
 const app = express();
@@ -17,10 +17,6 @@ app.use(express.urlencoded({ extended: true }));
 // Static files
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Handlebars setup
-app.engine('handlebars', exphbs.engine());
-app.set('view engine', 'handlebars');
-app.set('views', path.resolve(__dirname, '../views'));
 
 // MongoDB connection
 mongoose
@@ -33,7 +29,7 @@ app.use('/api/emails', emailRoutes);
 
 // Landing page
 app.get('/', (req, res) => {
-  res.render('home');
+    res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 // Export the app as a serverless function
