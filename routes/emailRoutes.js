@@ -22,7 +22,7 @@ const Email = mongoose.model('Email', emailSchema);
 router.post('/', async (req, res) => {
   try {
     console.log("hey there!"); // Debug log
-
+    console.log("reqbody:  ",req.body); // Debug log
     const { email } = req.body;
 
     console.log('Received email:', email); // Debug log
