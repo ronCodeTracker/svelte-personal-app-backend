@@ -29,6 +29,66 @@ const Email = mongoose.model('Email', emailSchema);
 
 // Routes
 
+
+// Serve a landing page
+app.get('/', (req, res) => {
+    res.send(`
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Landing Page</title>
+        <style>
+            body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            }
+            header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            }
+            main {
+            padding: 20px;
+            }
+footer {
+          margin-top: 20px;
+          color: #555;
+        }
+        a {
+          color: #007bff;
+          text-decoration: none;
+        }
+      </style>
+     </head>
+<body>
+      <header>
+        <h1>Welcome to My API</h1>
+      </header>
+      <main>
+        <p>This is a simple landing page for the API.</p>
+        <p>Use the following endpoints:</p>
+        <ul>
+          <li><a href="/api/emails">GET /api/emails</a> - Retrieve all emails</li>
+          <li>POST /api/emails - Add a new email (use Postman or cURL)</li>
+          <li>DELETE /api/emails/:id - Delete an email by ID</li>
+        </ul>
+      </main>
+      <footer>
+        <p>&copy; 2025 Ronald Kiefer</p>
+      </footer>
+</body>
+    </html>
+  `);
+});
+
+
+
+
 // Create a new email
 app.post('/api/emails', async (req, res) => {
   try {
